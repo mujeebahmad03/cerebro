@@ -11,8 +11,14 @@ export default function Footer() {
     <footer className="bg-gray-900 py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="font-bold text-lg mb-4 text-neutral-300">Cerebro</h3>
+          <div className="flex flex-col gap-3">
+            <Link href="/">
+              <img
+                src="/cerebro_logo.png"
+                alt="Cerebro Logo"
+                className="h-10 w-auto"
+              />
+            </Link>
             <p className="text-sm text-neutral-100">
               Empowering careers, growing businesses, driving change.
             </p>
