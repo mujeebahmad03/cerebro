@@ -1,12 +1,14 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
+import { useModalStore } from "@/store";
 
 interface MobileNavProps {
   items: {
@@ -18,7 +20,8 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ items, setIsOpen }: MobileNavProps) {
-  const [openItems, setOpenItems] = React.useState<string[]>([]);
+  const [openItems, setOpenItems] = useState<string[]>([]);
+  const { openLoginModal, openSignupModal } = useModalStore();
 
   return (
     <ScrollArea className="h-[calc(100vh-8rem)] py-6">
@@ -86,13 +89,19 @@ export function MobileNav({ items, setIsOpen }: MobileNavProps) {
         <Button
           variant="outline"
           className="w-full hover:text-sky-600"
-          onClick={() => setIsOpen(false)}
+          onClick={() => {
+            setIsOpen(false);
+            openLoginModal();
+          }}
         >
           Sign In
         </Button>
         <Button
           className="w-full bg-sky-500 hover:bg-white hover:text-sky-600"
-          onClick={() => setIsOpen(false)}
+          onClick={() => {
+            setIsOpen(false);
+            openSignupModal();
+          }}
         >
           Sign Up
         </Button>

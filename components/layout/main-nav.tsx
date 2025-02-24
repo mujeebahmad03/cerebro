@@ -24,6 +24,7 @@ import {
 import { Menu } from "lucide-react";
 import { MobileNav } from "./mobile-nav";
 import Link from "next/link";
+import { useModalStore } from "@/store";
 
 const mainNavItems = [
   {
@@ -108,6 +109,7 @@ const mainNavItems = [
 
 export function MainNav() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { openLoginModal, openSignupModal } = useModalStore();
 
   return (
     <motion.header
@@ -166,10 +168,14 @@ export function MainNav() {
             <Button
               variant="ghost"
               className="hidden md:inline-flex hover:text-sky-600"
+              onClick={openLoginModal}
             >
               Sign In
             </Button>
-            <Button className="hidden md:inline-flex bg-sky-500 hover:bg-white hover:text-sky-600">
+            <Button
+              className="hidden md:inline-flex bg-sky-500 hover:bg-white hover:text-sky-600"
+              onClick={openSignupModal}
+            >
               Sign Up
             </Button>
 
@@ -222,4 +228,5 @@ const ListItem = React.forwardRef<
     </li>
   );
 });
+
 ListItem.displayName = "ListItem";
